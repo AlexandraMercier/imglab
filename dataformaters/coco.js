@@ -128,12 +128,14 @@ var cocoFormater = {
                     ];
                     area = calcArea(points);
                 }
+                var featurePoints = getFeaturePoints(shape);
 
                 cocoData.annotations.push({
                     segmentation : [
                         points
                     ],
                     area : area,
+                    featurePoints: featurePoints,
                     "iscrowd": 0,
                     "image_id": image_i+1,
                     "bbox": [shape.bbox.x, shape.bbox.y, shape.bbox.width, shape.bbox.height],
@@ -157,6 +159,17 @@ var cocoFormater = {
         return cocoData;
     }
 
+}
+
+function getFeaturePoints(shape){
+    var featurePoints = [];
+    for(var i = 0; i < shape.featurePoints.length; i++){
+
+        featurePoints = featurePoints.concat(shape.featurePoints[i].x);
+        featurePoints = featurePoints.concat(shape.featurePoints[i].y);
+    }
+
+    return featurePoints;
 }
 
 function calcArea(coords){
