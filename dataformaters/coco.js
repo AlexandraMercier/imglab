@@ -135,7 +135,9 @@ var cocoFormater = {
                         points
                     ],
                     area : area,
-                    featurePoints: featurePoints,
+                    featurePoints: [
+                        featurePoints
+                    ],
                     "iscrowd": 0,
                     "image_id": image_i+1,
                     "bbox": [shape.bbox.x, shape.bbox.y, shape.bbox.width, shape.bbox.height],
@@ -164,7 +166,6 @@ var cocoFormater = {
 function getFeaturePoints(shape){
     var featurePoints = [];
     for(var i = 0; i < shape.featurePoints.length; i++){
-
         featurePoints = featurePoints.concat(shape.featurePoints[i].x);
         featurePoints = featurePoints.concat(shape.featurePoints[i].y);
     }
